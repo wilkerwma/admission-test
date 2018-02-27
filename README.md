@@ -5,13 +5,14 @@ Read this documentation before starting the test.
 ## User Stories
 
 Check the [Issues Tab](https://github.com/teamdevsquad/admission-test1/issues) for requirements. They are written as 
-User Stories. The Acceptance criteria will be used as guidelines for during the review.
+User Stories. The **Acceptance Criteria** will be used as guidelines when reviewing your delivery.
 
-## User Interface
+## Technology Stack
 
-## Code Style
-
-## Tests
+ * [Laravel 5.6](https://laravel.com/)
+ * [Vue.js 2.x](https://vuejs.org/)
+ * MySQL 5.7
+ * PHP 7.1+
 
 ## Deployment
 
