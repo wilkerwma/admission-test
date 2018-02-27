@@ -22,8 +22,14 @@ The application is a simplified version of tools like:
 
 **Note 1**: 
 ````
-Use the "Laravel Way" to implement the features of the application. Remember that we are interested in knowing how much 
-you know about the framework and it's features.
+Use the "Laravel Way" to implement the features of the application. Remember that we are interested in 
+knowing how much you know about the framework and it's features.
+````
+
+**Note 2**: 
+````
+Apply as many best practices as you can think of. They will be important to determine you level of 
+expertise.
 ````
  
 ## Requirements
@@ -131,7 +137,7 @@ you know about the framework and it's features.
  
 ## System Pages
  
- The test is composed of only 5 pages.
+ The application is composed of only 5 pages.
  
   1. Registration Page
   1. Login Page
@@ -141,4 +147,14 @@ you know about the framework and it's features.
  
 ## Deployment
 
-[TODO please, add the instruction for deploying the application for review.]
+These are the steps we are going to take to deploy your application:
+
+````
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan storage:link
+php artisan migrate --seed
+npm run dev
+````
