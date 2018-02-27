@@ -36,11 +36,11 @@ expertise.
  
  The application is composed of 5 pages where 4 of them can be easily created using Laravel scaffolding system.
    
-    1. Registration Page
-    1. Login Page
-    1. Reset Password Page
-    1. Recover Password Page
-    1. Task Board Page
+ 1. Registration Page
+ 1. Login Page
+ 1. Reset Password Page
+ 1. Recover Password Page
+ 1. Task Board Page
  
  Instead of fully detailed requirements we are sending you 8 User Stories. They are simplified in a way that you will 
  not need further clarification on how to implement them. The **Acceptance Criteria** will be used as guidelines when 
