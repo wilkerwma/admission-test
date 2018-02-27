@@ -34,10 +34,19 @@ expertise.
  
 ## Requirements
  
- Read the requirements to understand the features. They were written as User Stories. The **Acceptance Criteria** will 
- be used as guidelines when reviewing your delivery.
+ The application is composed of 5 pages where 4 of them can be easily created using Laravel scaffolding system.
+   
+    1. Registration Page
+    1. Login Page
+    1. Reset Password Page
+    1. Recover Password Page
+    1. Task Board Page
  
- #### Registration
+ Instead of fully detailed requirements we are sending you 8 User Stories. They are simplified in a way that you will 
+ not need further clarification on how to implement them. The **Acceptance Criteria** will be used as guidelines when 
+ reviewing your delivery.
+ 
+ #### [1] Registration
  
  As a **Visitor**,
  I want to **register providing my email and a password**
@@ -51,7 +60,7 @@ expertise.
  1. - [ ]  After registration the user will be redirected to the **Task Board Page**.
  ----
  
- #### Login
+ #### [2] Login
  As a **User**,
  I want to **login using my email and password**
  So that **I can access the restrict area of the system**
@@ -62,7 +71,7 @@ expertise.
  1. - [ ]  There must be a link to the **Registration Page**.
  ----
  
- #### Recover Password
+ #### [3] Recover Password
  As a **User**,
  I want to **be able to recover my password**
  So that **when I forget it, I can create a new one.**
@@ -72,7 +81,7 @@ expertise.
  1. - [ ]  The email must be sent with a link to the **Reset Password Page**.
  ----
  
- #### Reset Password
+ #### [4] Reset Password
  As a **User**,
  I want to **be able to reset my password**
  So that **a new password is created for my account.**
@@ -83,7 +92,7 @@ expertise.
  1. - [ ]  After reseting the password the user should be sent to the **Task Board Page**.
  ----
  
- #### Task Board
+ #### [5] Task Board
  
  As a **User**,
  I want to **Have a Task Board**
@@ -97,7 +106,7 @@ expertise.
  1. - [ ] The Task Board must be synchronized among all the user in the system in **real time** without having to refresh the page.
  ----
  
- #### Task Management
+ #### [6] Task Management
  
  As a **User**,
  I want to **create new tasks and modify or remove existing tasks**
@@ -110,7 +119,7 @@ expertise.
  1. - [ ]  Ask the user for a confirmation when removing a task.
  ----
  
- #### Lane Management
+ #### [7] Lane Management
  
  As a **User**,
  I want to **create new lanes and remove or modify existing lanes**
@@ -125,7 +134,7 @@ expertise.
  1. - [ ]  Ask the user for a confirmation when removing a task.
  ----
  
- #### Task Assignment
+ #### [8] Task Assignment
  
  As a **User**,
  I want to **to assign tasks to me or any other user**
@@ -134,16 +143,6 @@ expertise.
  ##### Acceptance Criteria
  1. - [ ]  A task can have only one user assigned to it.
  1. - [ ]  There must be a way to remove the assignment from a task.
- 
-## System Pages
- 
- The application is composed of only 5 pages.
- 
-  1. Registration Page
-  1. Login Page
-  1. Reset Password Page
-  1. Recover Password Page
-  1. Task Board Page
  
 ## Deployment
 
