@@ -1,7 +1,7 @@
 # Admission Test Documentation
 
-This Admission Test was design to evaluate how well you know the technologies and concepts we use in our daily 
-activities in DevSquad. You will be required to develop a **Task Board Management Application** following the 
+This Admission Test was designed to evaluate how well you know the technologies and concepts we use in our daily 
+activities at DevSquad. You will be required to develop a **Task Board Management Application** following the 
 instructions given in the following sections.
 
 ## Product Vision
@@ -23,12 +23,12 @@ The application is a simplified version of tools like:
 **Note 1**: 
 ````
 Use the "Laravel Way" to implement the features of the application. Remember that we are interested in 
-knowing how much you know about the framework and it's features.
+knowing how much you know about the framework and its features.
 ````
 
 **Note 2**: 
 ````
-Apply as many best practices as you can think of. They will be important to determine you level of 
+Apply as many best practices as you can think of. They will be important to determining your level of 
 expertise.
 ````
  
@@ -42,7 +42,7 @@ expertise.
  1. Recover Password Page
  1. Task Board Page
  
- Instead of fully detailed requirements we are sending you 8 User Stories. They are simplified in a way that you will 
+ Instead of fully detailed requirements, we are sending you 8 User Stories. They are simplified in such a way that you will 
  not need further clarification on how to implement them. The **Acceptance Criteria** will be used as guidelines when 
  reviewing your delivery.
  
@@ -63,10 +63,10 @@ expertise.
  #### [2] Login
  As a **User**,
  I want to **login using my email and password**
- So that **I can access the restrict area of the system**
+ So that **I can access the restricted area of the system**
  
  ##### Acceptance Criteria
- 1. - [ ]  After authentication the user must be sent to the **Task Board Page**.
+ 1. - [ ]  After authentication, the user must be sent to the **Task Board Page**.
  1. - [ ]  There must be a link to the *Recover Password Page**.
  1. - [ ]  There must be a link to the **Registration Page**.
  ----
@@ -89,7 +89,7 @@ expertise.
  ##### Acceptance Criteria
  1. - [ ]  The email must match the same email used in the **Recover Password Page**.
  1. - [ ]  The password must be confirmed.
- 1. - [ ]  After reseting the password the user should be sent to the **Task Board Page**.
+ 1. - [ ]  After resetting the password, the user should be sent to the **Task Board Page**.
  ----
  
  #### [5] Task Board
@@ -99,11 +99,11 @@ expertise.
  So that **I can easily create and manage tasks**
  
  ##### Acceptance Criteria
- 1. - [ ]  While the email is not verified, a message will be displayed orienting the user on how to verify the email.
+ 1. - [ ] While the email is not verified, a message will be displayed informing the user on how to verify the email.
  1. - [ ] The default board will have three lanes: To Do, In Progress, Done.
  1. - [ ] The Task Board will contain all tasks from all users.
  1. - [ ] The user will be able to drag and drop tasks from one lane to another.
- 1. - [ ] The Task Board must be synchronized among all the user in the system in **real time** without having to refresh the page.
+ 1. - [ ] The Task Board must be synchronized among all the users in the system in **real time** without having to refresh the page.
  ----
  
  #### [6] Task Management
@@ -142,7 +142,7 @@ expertise.
  
  ##### Acceptance Criteria
  1. - [ ]  A task can have only one user assigned to it.
- 1. - [ ]  There must be a way to remove the assignment from a task.
+ 1. - [ ]  There must be a way to remove the assignee from a task.
  
 ## Deployment
 
