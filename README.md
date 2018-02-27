@@ -6,7 +6,7 @@ instructions given in the following sections.
 
 ## Product Vision
 
-The **Task Board Management Application** will allow users define their onw **Task Life Cycle** (adding or removing 
+The **Task Board Management Application** will allow users to define their own **Task Life Cycle** (adding or removing 
 lanes to the Task Board) and use it to manage their tasks using Drag & Drop capabilities.
 
 The application is a simplified version of tools like:  
