@@ -11,7 +11,6 @@ lanes to the Task Board) and use it to manage their tasks using Drag & Drop capa
 
 The application is a simplified version of tools like:  
 
- * [ZenHub](https://www.zenhub.com/)
  * [Trello](https://trello.com/)
 
 ## Technology Stack
