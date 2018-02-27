@@ -34,7 +34,7 @@ expertise.
  
 ## Requirements
  
- Read the requirements to understand the features. They are written as User Stories. The **Acceptance Criteria** will 
+ Read the requirements to understand the features. They were written as User Stories. The **Acceptance Criteria** will 
  be used as guidelines when reviewing your delivery.
  
  #### Registration
