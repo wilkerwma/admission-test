@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::resource('users', 'UserController');
+Route::view('/', 'login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('/board', 'BoardController');
+Route::put('/task/update-order/', 'TaskController@updateOrder');
+Route::resource('/task', 'TaskController');
+Route::resource('/card', 'CardController');
