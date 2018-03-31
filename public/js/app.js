@@ -48309,7 +48309,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetch: function fetch() {
             var _this = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get("/card/" + this.id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get("/lane/" + this.id).then(function (response) {
                 _this.name = response.data.data.name;
                 _this.tasks = response.data.data.tasks;
             });
@@ -48318,7 +48318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             var data = {
-                'card_id': this.id,
+                'lane_id': this.id,
                 'name': this.new_item
             };
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/task/', data).then(function (response) {
@@ -48342,7 +48342,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: this.id,
                 name: this.name
             };
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/card/' + this.id, data).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/lane/' + this.id, data).then(function (response) {
                 _this3.name = response.data.data.name;
             });
             this.show_title_form = false;

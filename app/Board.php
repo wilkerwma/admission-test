@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Lane;
 
 class Board extends Model
 {
@@ -27,14 +28,14 @@ class Board extends Model
     // {
     //     return $this->hasMany('App\Task');
     // }
-    //
+    // //
+    // public function lanes()
+    // {
+    //     return $this->hasMany('App\Lane');
+    // }
+
     public function lanes()
     {
-        return $this->hasMany('App\Lane');
+        return $this->hasMany(Lane::class);
     }
-
-    // public function lanes(): HasMany
-    // {
-    //     return $this->hasMany(Lane::class);
-    // }
 }

@@ -18,7 +18,7 @@ class BoardResource extends JsonResource
      {
          return [
              'id'    => $this->id,
-             'lanes' => LaneResource::collection($this->lanes)
+             'lanes' => $this->lanes
          ];
      }
 }

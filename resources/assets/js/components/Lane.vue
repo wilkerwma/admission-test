@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         fetch() {
-            axios.get("/card/" + this.id)
+            axios.get("/lane/" + this.id)
                  .then((response) => {
                     this.name  = response.data.data.name;
                     this.tasks = response.data.data.tasks;
@@ -82,7 +82,7 @@ export default {
         },
         addTask() {
             const data = {
-                'card_id': this.id,
+                'lane_id': this.id,
                 'name': this.new_item
             }
             axios.post('/task/', data).then((response) => {
@@ -105,7 +105,7 @@ export default {
                 id: this.id,
                 name: this.name
             }
-            axios.put('/card/' + this.id, data)
+            axios.put('/lane/' + this.id, data)
                  .then((response) => {
                     this.name = response.data.data.name;
                  });
@@ -130,16 +130,3 @@ export default {
     }
 }
 </script>
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.

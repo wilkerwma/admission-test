@@ -4,19 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModelsLane extends Model
+class Lane extends Model
 {
       /**
        * Get tasks that are in the lane.
        */
       public function tasks()
       {
-        return $this->hasMany('App\Models\Task');
+        return $this->hasMany('App\Task');
       }
 
       public function taskboard()
       {
-          return $this->belongsTo('App\Models\TasksBoard');
+          return $this->belongsTo('App\Board');
       }
 
       protected $fillable = [

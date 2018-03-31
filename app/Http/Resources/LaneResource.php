@@ -17,7 +17,7 @@ class LaneResource extends JsonResource
       return [
         'id'    => $this->id,
         'name'  => $this->name,
-        // 'tasks' => TaskResource::collection($this->tasks)
-      ];
+        'tasks' => $this->tasks
+            ];
     }
 }

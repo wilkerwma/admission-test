@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Lane;
+use App\Http\Resources\LaneResource;
+
+
 
 use Illuminate\Http\Request;
 
@@ -52,11 +56,18 @@ public function store(Request $request)
 * @param  \App\Lane  $lane
 * @return \Illuminate\Http\Response
 */
-public function show(Lane $lane)
+public function show($id)
 {
   // if (auth()->id() != $lane->board->user_id) {
   //     return response(null, 404);
   // }
+
+  $lane = Lane::find($id);
+  if (request()->wantsJson()) {
+      return new LaneResource($lane);
+     // return view('board', compact('board'));
+
+  }
   return new LaneResource($lane);
 }
 /**
