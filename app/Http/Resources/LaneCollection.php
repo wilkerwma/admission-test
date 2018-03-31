@@ -17,5 +17,5 @@ class LaneCollection extends JsonResource
       return [
         'data' => $this->collection
       ];
-    }
+     }
 }

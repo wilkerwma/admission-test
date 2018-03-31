@@ -10000,3 +10000,34 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+#app > .row {
+  margin: 0;
+}
+
+h4 {
+  color: #fff;
+}
+
+.navbar-right {
+  margin-right: 0;
+}
+
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
+.flex-nowrap {
+  -ms-flex-wrap: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+
+.flex-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+}
+

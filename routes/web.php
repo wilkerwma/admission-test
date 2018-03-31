@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('users', 'UserController');
-Route::view('/', 'login');
+Route::view('/', 'auth/login');
 
 Auth::routes();
 

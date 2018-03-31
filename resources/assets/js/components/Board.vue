@@ -1,8 +1,8 @@
-<template>
+<template >
     <div class="container-fluid">
             <draggable v-model="lanes" class="row flex-row flex-now">
                 <lane v-for="(lane, index) in lanes" :key="lane.id" :id="lane.id"></lane>
-                <add-lane :boardId="id" @new-lane="laneAdded"></add-lane>
+                <!-- <add-lane :boardId="id" @new-lane="laneAdded"></add-lane> -->
             </draggable>
     </div>
 </template>
@@ -20,27 +20,42 @@
 
 <script>
 import Lane from './Lane.vue';
-import AddLane from './AddLane.vue';
+// import AddLane from './AddLane.vue';
 import draggable from 'vuedraggable';
+
+
 export default {
     props: ['id'],
-    components: { Lane, AddLane, draggable },
+    components: { Lane, draggable },
+    mounted() {
+        console.log('Component mounted.')
+    },
     data() {
         return {
-            name: '',
             lanes: []
         }
     },
     created() {
-        this.fetch();
+        this.fetchBoard();
     },
     methods: {
-        fetch() {
-            axios.get("/board/" + this.id)
-                 .then((response) => {
-                    this.name  = response.data.data.name;
-                    this.lanes = response.data.data.lanes;
-                 });
+        fetchBoard() {
+          axios.get("/board/" + this.id)
+                      .then((response) => {
+                        console.log(response)
+                         this.id  = response.data.data.id;
+                         this.lanes = response.data.data.lanes;
+                      });
+
+
+                //  .then( res => res.json()
+                //  // this.name  = response.data.data.name;
+                //     // this.lanes = response.data.data.lanes;
+                //  ).then( res => {
+                //    console.log(res);
+                //  }
+
+                //  );
         },
         laneAdded(lane) {
             this.lanes.push(lane);

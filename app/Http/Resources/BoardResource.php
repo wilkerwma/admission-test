@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Resources\LaneCollection;
+use App\Resources\LaneResource;
 
 class BoardResource extends JsonResource
 {
@@ -16,7 +18,7 @@ class BoardResource extends JsonResource
      {
          return [
              'id'    => $this->id,
-             'lanes' => CardResource::collection($this->lanes)
+             'lanes' => LaneResource::collection($this->lanes)
          ];
      }
 }

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h4>DevSquad</h4>
-<div id="board">
-  <board id="{{$board->id}}"></board>  
-</div>
+<h4>{{$board->name}}</h4>
+<board id="{{$board->id}}"></board>
 @endsection

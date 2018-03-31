@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\BoardResource;
 use App\Board;
 
 
@@ -20,8 +21,14 @@ class BoardController extends Controller
 public function index()
 {
   $board = Board::find(1);
+  dd($board);
 
-  return view('board', compact('board'));
+  // if (request()->wantsJson()) {
+  //     return new BoardResource($board);
+  // }
+  return new BoardResource($board);
+
+  // return view('board', compact('board'));
 }
 /**
  * Show the form for creating a new resource.
@@ -48,14 +55,16 @@ public function store(Request $request)
  * @param  int  $id
  * @return \Illuminate\Http\Response
  */
-public function show()
-{
-  $board = Board::find(1);
-  if (request()->wantsJson()) {
-      return new BoardResource($board);
-  }
-  return view('board.show', compact('board'));
-}
+ public function show($id)
+ {
+     $board = Board::find($id);
+     if (request()->wantsJson()) {
+         return new BoardResource($board);
+        // return view('board', compact('board'));
+
+     }
+     return view('board', compact('board'));
+ }
 /**
  * Show the form for editing the specified resource.
  *
