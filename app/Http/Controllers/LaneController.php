@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Lane;
 use App\Http\Resources\LaneResource;
+use Carbon\Carbon;
 
 
 
@@ -41,12 +42,15 @@ public function create()
 public function store(Request $request)
 {
   $this->validate(request(), [
-      'tasks_boards_id' => 'required|exists:boards,id',
+      'board_id' => 'required|exists:boards,id',
       'name'     => 'required'
-  ]);
+      ]);
   $lane = Lane::create([
-      'tasks_boards_id' => request('board_id'),
-      'name'     => request('name')
+      'board_id' => request('board_id'),
+      'name'     => request('name'),
+      'user_id' => request('user_id'),
+      'created_at' => Carbon::now(),
+      'updated_at' => Carbon::now()
   ]);
   return new LaneResource($lane);
 }
@@ -90,9 +94,11 @@ public function update(Lane $lane)
 {
   $this->validate(request(), [
       'id' => 'required',
-      'name' => 'required'
+      'name' => 'required',
+      'updated_at' => 'required'
   ]);
   $lane->name = request('name');
+  $lane->updated_at = Carbon::now();
   $lane->save();
   return new LaneResource($lane);
 }

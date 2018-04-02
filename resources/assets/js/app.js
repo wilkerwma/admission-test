@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VuejsDialog from "vuejs-dialog"
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,6 +20,8 @@ window.Vue = require('vue');
 // Vue.component('example-component',require('./components/ExampleComponent.vue'));
 Vue.component('board', require('./components/Board.vue'));
 Vue.component('task', require('./components/Task.vue'));
+Vue.use(VuejsDialog)
+
 
 const app = new Vue({
     el: '#app'

@@ -17,7 +17,9 @@ class LaneResource extends JsonResource
       return [
         'id'    => $this->id,
         'name'  => $this->name,
+        'user_id' => $this->user_id,
+        'board_id' => $this->board_id,
         'tasks' => $this->tasks
-            ];
+      ];
     }
 }

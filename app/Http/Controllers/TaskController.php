@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Task;
+use App\Http\Resources\TaskResource;
+use Carbon\Carbon;
+
 
 class TaskController extends Controller
 {
@@ -43,8 +47,12 @@ public function store(Request $request)
     $task = Task::create([
         'lane_id'   => request('lane_id'),
         'name'      => request('name'),
-        'description' => request('descrition'),
-        'assigned_to' => request('assigned_to')
+        'user_id' => request('user_id'),
+        'board_id' => request('board_id'),
+        'description' => ' desc ',
+        'assigned_to' => request('assigned_to'),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ]);
     return new TaskResource($task);
 }
@@ -54,12 +62,15 @@ public function store(Request $request)
  * @param  \App\Task  $task
  * @return \Illuminate\Http\Response
  */
-public function show(Task $task)
+public function show($id)
 {
-    // if (auth()->id() != $task->lane->board->user_id) {
-    //     return response(null, 404);
-    // }
-    return new TaskResource($task);
+  $task = Task::find($id);
+  if (request()->wantsJson()) {
+      return new TaskResource($task);
+     // return view('board', compact('board'));
+
+  }
+  return new TaskResource($task);
 }
 /**
  * Show the form for editing the specified resource.
@@ -85,12 +96,14 @@ public function update(Request $request, Task $task)
       'name' => 'required'
   ]);
   $task->name = request('name');
-  $task->description = request('description');
+  $task->description = " desc ";
   $task->assigned_to = request('assigned_to');
-
-
+  // if (  $task->assigned_to == null) {
+  //   # code...
+  //   $task->assigned_to = Auth::user()->id;
+  // }
   $task->save();
-  return new LaneResource($task);
+  return new TaskResource($task);
 }
 /**
  * Remove the specified resource from storage.
@@ -98,9 +111,10 @@ public function update(Request $request, Task $task)
  * @param  \App\Task  $task
  * @return \Illuminate\Http\Response
  */
-public function destroy(Task $task)
+public function destroy($id)
 {
-    //
+  $task = Task::find($id);
+  $task->delete();
 }
 public function updateOrder(Request $request)
 {

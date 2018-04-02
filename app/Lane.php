@@ -20,7 +20,7 @@ class Lane extends Model
       }
 
       protected $fillable = [
-          'name', 'created_by', 'tasks_board_id'
+          'name', 'created_by', 'tasks_board_id', 'user_id', 'board_id'
       ];
 
 }

@@ -1,5 +1,6 @@
 <template>
     <div class="col-sm-3" v-on:mouseover="mouseOver" v-on:mouseout="mouseOut">
+      <!-- <button v-on:click="deletar">Delete!</button> -->
         <div class="panel panel-default">
             <div class="panel-heading" @click="toggleTitleForm">
                 <span v-if="!show_title_form">{{ name }}</span>
@@ -9,15 +10,24 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group mb0">
-                    <draggable v-model="tasks" @change="saveState">
+                  <draggable v-model="tasks" class="row flex-row flex-now">
+                    <!-- <draggable v-model="tasks" @change="saveState">
                         <li class="list-group-item" v-for="item in tasks" :key="item.id">
                             {{item.name}}
+                            {{item.user_name}}
                         </li>
-                    </draggable>
+                    </draggable> -->
+                        <task :user="parseInt(user)" v-for="(task, index) in tasks" :key="task.id" :id="task.id"></task>
+                      </draggable>
                 </ul>
             </div>
-            <div class="panel-footer" v-if="show_add == true">
-                <input type="text" class="form-control input-sm" placeholder="Add new item" v-on:keyup.enter="addTask" v-model="new_item" />
+            <div class="panel-footer" >
+                <input type="text" class="form-control input-sm" placeholder="Add new item" v-on:keyup.enter="addTask" v-model="task_name" />
+                <select v-model="task_assign">
+                  <option v-for="user in users" v-bind:value="user.id">
+                    {{ user.name }}
+                  </option>
+                </select>
             </div>
         </div>
     </div>
@@ -42,9 +52,11 @@
 }
 .panel-body {
     padding-top: 0;
+    width: 200px;
 }
 .list-group-item {
     margin: 2px;
+    margin-left: 22px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -58,32 +70,55 @@
 import draggable from 'vuedraggable';
 import axios from 'axios';
 export default {
-    props: ['id'],
+    props: {
+      id: Number,
+      user: Number
+    },
+    //['id'],
     components: { draggable },
     data() {
         return {
-            new_item: '',
+            task_name: '',
+            task_assign: 0,
             show_title_form: false,
             show_add: false,
             name: '',
-            tasks: []
+            tasks: [],
+            board_id: "",
+            users: []
         }
     },
     created() {
         this.fetch();
+        // this.getUser();
     },
     methods: {
         fetch() {
             axios.get("/lane/" + this.id)
                  .then((response) => {
                     this.name  = response.data.data.name;
+                    this.board_id = response.data.data.board_id;
                     this.tasks = response.data.data.tasks;
                  });
+                 axios.get("/users")
+                      .then((response) => {
+                         this.users  = response.data;
+                      });
         },
+        // getUser() {
+        //   axios.get("/users")
+        //        .then((response) => {
+        //          console.log(response);
+        //           this.users  = response.data.data.users;
+        //        });
+        // },
         addTask() {
             const data = {
                 'lane_id': this.id,
-                'name': this.new_item
+                'name': this.task_name,
+                'user_id': this.user,
+                'board_id': this.board_id,
+                'assigned_to': this.task_assign
             }
             axios.post('/task/', data).then((response) => {
                 let last_id = 0;
@@ -110,6 +145,9 @@ export default {
                     this.name = response.data.data.name;
                  });
              this.show_title_form = false;
+        },
+        deletar() {
+
         },
         mouseOver() {
             this.show_add = true;
