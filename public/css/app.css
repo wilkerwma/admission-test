@@ -10016,18 +10016,3 @@ h4 {
   margin-bottom: 0 !important;
 }
 
-.flex-nowrap {
-  -ms-flex-wrap: nowrap !important;
-  flex-wrap: nowrap !important;
-}
-
-.flex-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal !important;
-  -webkit-box-direction: normal !important;
-  -ms-flex-direction: row !important;
-  flex-direction: row !important;
-}
-

@@ -2,27 +2,21 @@
     <div class="col-sm-3" v-on:mouseover="mouseOver" v-on:mouseout="mouseOut">
       <!-- <button v-on:click="deletar">Delete!</button> -->
         <div class="panel panel-default">
-            <div class="panel-heading" @click="toggleTitleForm">
-                <span v-if="!show_title_form">{{ name }}</span>
-                <span v-if="show_title_form">
-                    <input type="text" ref="titlefield" class="form-control input-sm" v-on:keyup.enter="update" v-on:keyup.esc="toggleTitleForm" v-model="name" />
+            <div class="panel-heading"> <!-- @click="toggleTitleForm" -->
+                <!-- <span v-if="!show_title_form">{{ name }}</span> -->
+                <span> <!-- v-if="show_title_form"-->
+                    <input type="text" ref="titlefield" class="form-control" v-on:keyup.enter="update"  v-model="name" />
                 </span>
             </div>
             <div class="panel-body">
                 <ul class="list-group mb0">
-                  <draggable v-model="tasks" class="row flex-row flex-now">
-                    <!-- <draggable v-model="tasks" @change="saveState">
-                        <li class="list-group-item" v-for="item in tasks" :key="item.id">
-                            {{item.name}}
-                            {{item.user_name}}
-                        </li>
-                    </draggable> -->
+                  <draggable v-model="tasks" class="row flex-row flex-now" :options="{group:'lanes'}">
                         <task :user="parseInt(user)" v-for="(task, index) in tasks" :key="task.id" :id="task.id"></task>
                       </draggable>
                 </ul>
             </div>
             <div class="panel-footer" >
-                <input type="text" class="form-control input-sm" placeholder="Add new item" v-on:keyup.enter="addTask" v-model="task_name" />
+                <input type="text" class="form-control input-sm" placeholder="Add new task" v-on:keyup.enter="addTask" v-model="task_name" />
                 <select v-model="task_assign">
                   <option v-for="user in users" v-bind:value="user.id">
                     {{ user.name }}
@@ -49,6 +43,8 @@
 }
 .panel-default {
     background-color: #e2e4e6;
+    width: 100%;
+    /*height: 100%;*/
 }
 .panel-body {
     padding-top: 0;
@@ -80,7 +76,7 @@ export default {
         return {
             task_name: '',
             task_assign: 0,
-            show_title_form: false,
+            // show_title_form: false,
             show_add: false,
             name: '',
             tasks: [],
@@ -101,9 +97,9 @@ export default {
                     this.tasks = response.data.data.tasks;
                  });
                  axios.get("/users")
-                      .then((response) => {
-                         this.users  = response.data;
-                      });
+                .then((response) => {
+                   this.users  = response.data;
+                });
         },
         // getUser() {
         //   axios.get("/users")
@@ -155,16 +151,16 @@ export default {
         mouseOut() {
             this.show_add = false;
         },
-        toggleTitleForm() {
-            this.show_title_form = !this.show_title_form;
-            // Use nextTick because the element might not be in the DOM yet
-            this.$nextTick(() => {
-                if (this.$refs.titlefield) {
-                    this.$refs.titlefield.focus();
-                    this.$refs.titlefield.select();
-                }
-            })
-        }
+        // toggleTitleForm() {
+        //     this.show_title_form = !this.show_title_form;
+        //     // Use nextTick because the element might not be in the DOM yet
+        //     this.$nextTick(() => {
+        //         if (this.$refs.titlefield) {
+        //             this.$refs.titlefield.focus();
+        //             this.$refs.titlefield.select();
+        //         }
+        //     })
+        // }
     }
 }
 </script>

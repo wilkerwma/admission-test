@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Lane;
 use App\Http\Resources\LaneResource;
-use Carbon\Carbon;
+use App\Services\LaneService;
 
 
 
@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 
 class LaneController extends Controller
 {
-  public function __construct()
-{
-  $this->middleware('auth');
-}
+  public function __construct(LaneService $laneService)
+  {
+    $this->middleware('auth');
+    $this->service = $laneService;
+  }
 /**
 * Display a listing of the resource.
 *
@@ -45,13 +46,9 @@ public function store(Request $request)
       'board_id' => 'required|exists:boards,id',
       'name'     => 'required'
       ]);
-  $lane = Lane::create([
-      'board_id' => request('board_id'),
-      'name'     => request('name'),
-      'user_id' => request('user_id'),
-      'created_at' => Carbon::now(),
-      'updated_at' => Carbon::now()
-  ]);
+
+   $lane = $this->service->store($request);
+
   return new LaneResource($lane);
 }
 /**
@@ -62,16 +59,9 @@ public function store(Request $request)
 */
 public function show($id)
 {
-  // if (auth()->id() != $lane->board->user_id) {
-  //     return response(null, 404);
-  // }
 
-  $lane = Lane::find($id);
-  if (request()->wantsJson()) {
-      return new LaneResource($lane);
-     // return view('board', compact('board'));
+  $lane = $this->service->show($id);
 
-  }
   return new LaneResource($lane);
 }
 /**
@@ -95,11 +85,9 @@ public function update(Lane $lane)
   $this->validate(request(), [
       'id' => 'required',
       'name' => 'required',
-      'updated_at' => 'required'
   ]);
-  $lane->name = request('name');
-  $lane->updated_at = Carbon::now();
-  $lane->save();
+  $lane = $this->service->update($lane);
+
   return new LaneResource($lane);
 }
 /**

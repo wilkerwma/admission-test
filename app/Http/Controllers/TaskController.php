@@ -1,16 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Task;
 use App\Http\Resources\TaskResource;
-use Carbon\Carbon;
+use App\Services\TaskService;
+
 
 
 class TaskController extends Controller
 {
-  /**
+
+  public function __construct(TaskService $taskService)
+  {
+    $this->middleware('auth');
+    $this->service = $taskService;
+  }
+
+/**
  * Display a listing of the resource.
  *
  * @return \Illuminate\Http\Response
@@ -40,20 +47,8 @@ public function store(Request $request)
         'lane_id' => 'required|exists:lanes,id',
         'name'    => 'required|string'
     ]);
-    // static model method?
-    // $max_order_key = DB::table('tasks')
-    //                     ->where('lane_id', request('lane_id'))
-    //                     ->max('order_key');
-    $task = Task::create([
-        'lane_id'   => request('lane_id'),
-        'name'      => request('name'),
-        'user_id' => request('user_id'),
-        'board_id' => request('board_id'),
-        'description' => ' desc ',
-        'assigned_to' => request('assigned_to'),
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
-    ]);
+
+    $task = $this->service->store($request);
     return new TaskResource($task);
 }
 /**
@@ -64,12 +59,8 @@ public function store(Request $request)
  */
 public function show($id)
 {
-  $task = Task::find($id);
-  if (request()->wantsJson()) {
-      return new TaskResource($task);
-     // return view('board', compact('board'));
+  $task = $this->service->show($id);
 
-  }
   return new TaskResource($task);
 }
 /**
@@ -95,14 +86,8 @@ public function update(Request $request, Task $task)
       'id' => 'required',
       'name' => 'required'
   ]);
-  $task->name = request('name');
-  $task->description = " desc ";
-  $task->assigned_to = request('assigned_to');
-  // if (  $task->assigned_to == null) {
-  //   # code...
-  //   $task->assigned_to = Auth::user()->id;
-  // }
-  $task->save();
+
+  $task = $this->service->update($request, $task);
   return new TaskResource($task);
 }
 /**
@@ -113,9 +98,9 @@ public function update(Request $request, Task $task)
  */
 public function destroy($id)
 {
-  $task = Task::find($id);
-  $task->delete();
+  $this->service->destroy($id);
 }
+
 public function updateOrder(Request $request)
 {
     $tasks = collect(request('items'));

@@ -2,7 +2,7 @@
   <li class="list-group-item">
     <input type="text" class="form-control input-sm" placeholder="Add new item" v-on:keyup.enter="updateName" v-model="name" />
        <!-- Task: {{name}} <br> -->
-      Assigned to: {{user_name}} -
+      Assigned to: {{user_name}}
       <br>
       <select v-model="task_assign_update">
         <option @selected="updateAssign" v-for="user in users" v-bind:value="user.id">
@@ -10,7 +10,7 @@
         </option>
       </select>
       <!-- <button v-on:click="deleteTask">Delete</button> -->
-      <button v-confirm="{ok: deleteTask, cancel: doNothing, message: 'Do you really want to delete the task?'}">Delete</button>
+      <button v-confirm="{ok: deleteTask, message: 'Do you really want to delete the task?'}">Delete</button>
   </li>
 </template>
 
