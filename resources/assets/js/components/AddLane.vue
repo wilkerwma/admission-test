@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="Add a lane..." v-on:keyup.enter="newLane" v-model="name" />
+        <input style="margin-bottom: 10px;"type="text" class="form-control" placeholder="Add a lane..." v-on:keyup.enter="newLane" v-model="name" />
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 .form-control {
     background-color: rgba(0, 0, 0, 0.12);
     border: 0;
-    color: #fff;
+    /*color: #fff;*/
 }
 .form-control:hover {
     background-color: rgba(0, 0, 0, 0.2);

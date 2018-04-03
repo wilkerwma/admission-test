@@ -30,6 +30,7 @@ export default {
       return {
           name: '',
           task_assign_update: 0,
+          lane_id: '',
           users: [],
           user_name: ''
       }
@@ -44,6 +45,7 @@ export default {
                   this.name  = response.data.data.name;
                   this.task_assign_update = response.data.data.assigned_to;
                   this.user_name = response.data.data.user_name;
+                  this.lane_id = response.data.data.lane_id;
                });
                axios.get("/users")
                     .then((response) => {
@@ -98,7 +100,6 @@ export default {
       },
       deleteTask() {
         axios.delete('task/' + this.id);
-        this.$parent.$emit('fetch');
       },
       mouseOver() {
           this.show_add = true;

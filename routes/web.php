@@ -24,6 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('/board', 'BoardController');
-Route::put('/task/update-order/', 'TaskController@updateOrder');
+Route::put('/task/changeLane/', 'TaskController@changeLane');
 Route::resource('/task', 'TaskController');
 Route::resource('/lane', 'LaneController');

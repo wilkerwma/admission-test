@@ -12,12 +12,22 @@ class TaskService
   {
     return Task::find($id);
   }
-  public function update(Request $request, Task $task)
+  public function update(Task $task)
   {
     $task->name = request('name');
     $task->description = " desc ";
     $task->assigned_to = request('assigned_to');
     $task->updated_at = Carbon::now();
+    $task->save();
+    return $task;
+  }
+
+  public function updateLane(Task $task, $id)
+  {
+    // $task->name = request('name');
+    // $task->description = " desc ";
+    // $task->assigned_to = request('assigned_to');
+    // $task->updated_at = Carbon::now();
     $task->save();
     return $task;
   }

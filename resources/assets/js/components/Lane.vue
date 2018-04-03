@@ -10,12 +10,12 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group mb0">
-                  <draggable v-model="tasks" class="row flex-row flex-now" :options="{group:'lanes'}">
-                        <task :user="parseInt(user)" v-for="(task, index) in tasks" :key="task.id" :id="task.id"></task>
-                      </draggable>
+                  <draggable v-model="tasks" :options="{group:'lanes'}"  @change="changeLane">
+                        <task :user="parseInt(user)" v-for="(task, index) in tasks" :key="task.id" :id="task.id" :board_id="board_id"></task>
+                  </draggable>
                 </ul>
             </div>
-            <div class="panel-footer" >
+            <div class="panel-footer" style="margin-top: 10px;">
                 <input type="text" class="form-control input-sm" placeholder="Add new task" v-on:keyup.enter="addTask" v-model="task_name" />
                 <select v-model="task_assign">
                   <option v-for="user in users" v-bind:value="user.id">
@@ -126,7 +126,7 @@ export default {
             this.new_item = '';
         },
         saveState() {
-            axios.put('/task/update-order/', {tasks: this.tasks})
+            axios.put('/task/changeLane', )
                  .then((response) => {
                     //
                  });
@@ -151,6 +151,15 @@ export default {
         mouseOut() {
             this.show_add = false;
         },
+        changeLane()
+        {
+          console.log(this.tasks);
+          console.log(this.id);
+          axios.put('/task/changeLane', {tasks: this.tasks, lane_id: this.id} )
+               .then((response) => {
+                  //
+               });
+        }
         // toggleTitleForm() {
         //     this.show_title_form = !this.show_title_form;
         //     // Use nextTick because the element might not be in the DOM yet

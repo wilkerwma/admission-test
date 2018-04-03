@@ -80,14 +80,14 @@ public function edit(Task $task)
  * @param  \App\Task  $task
  * @return \Illuminate\Http\Response
  */
-public function update(Request $request, Task $task)
+public function update(Task $task)
 {
   $this->validate(request(), [
       'id' => 'required',
       'name' => 'required'
   ]);
 
-  $task = $this->service->update($request, $task);
+  $task = $this->service->update($task);
   return new TaskResource($task);
 }
 /**
@@ -99,22 +99,18 @@ public function update(Request $request, Task $task)
 public function destroy($id)
 {
   $this->service->destroy($id);
+  return response()->json(['data' => ['success' => true]]);
 }
 
-public function updateOrder(Request $request)
+public function changeLane(Request $request)
 {
-    $tasks = collect(request('items'));
-    // Loop over each task and update order_key column to be the array
-    // index from the posted data
+    $tasks = collect(request('tasks'));
     $tasks->each(function($task_data, $key) {
-        $task = Task::find($task_data['id']);
-        // Validate task belongs to us
-        if (auth()->id() != $task->lane->board->user_id) {
-            return;
+        $task = $this->service->show($task_data['id']);
+        if ($task->lane_id != request('lane_id')) {
+          $task->lane_id = request('lane_id');
+          $task = $this->service->updateLane($task, (int)request('lane_id'));
         }
-        // Update order_key and save
-        $task->order_key = $key;
-        $task->save();
     });
     return response()->json(['data' => ['success' => true]]);
 }
