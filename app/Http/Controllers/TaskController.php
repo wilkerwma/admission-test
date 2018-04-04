@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Http\Resources\TaskResource;
 use App\Services\TaskService;
+use App\Events\TaskEdited;
 
 
 
@@ -49,6 +50,8 @@ public function store(Request $request)
     ]);
 
     $task = $this->service->store($request);
+    event(new TaskEdited($task));
+
     return new TaskResource($task);
 }
 /**
@@ -88,6 +91,7 @@ public function update(Task $task)
   ]);
 
   $task = $this->service->update($task);
+  event(new TaskEdited($task));
   return new TaskResource($task);
 }
 /**
@@ -112,6 +116,7 @@ public function changeLane(Request $request)
           $task = $this->service->updateLane($task, (int)request('lane_id'));
         }
     });
+    event(new TaskEdited($task));
     return response()->json(['data' => ['success' => true]]);
 }
 }

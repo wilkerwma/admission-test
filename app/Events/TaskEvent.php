@@ -9,12 +9,10 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\User;
-use App\Task;
 use Illuminate\Http\Request;
 
 
-class TaskEdited implements ShouldBroadcast
+class TaskEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -24,14 +22,11 @@ class TaskEdited implements ShouldBroadcast
      * @return void
      */
 
-    public $task;
+     public $message;
 
-    public function __construct(Task $task)
+    public function __construct($message)
     {
-        //
-        // $this->middleware('auth');
-        // $this->user = Auth::user();
-        $this->task = $task;
+        $this->message = $message;
     }
 
     /**
@@ -41,6 +36,6 @@ class TaskEdited implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('task-chanel');
+        return new Channel('task-name');
     }
 }

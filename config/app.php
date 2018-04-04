@@ -85,7 +85,7 @@ return [
     | Application Fallback Locale
     |--------------------------------------------------------------------------
     |
-    | The fallback locale determines the locale to use when the current one
+    | The fallback locale determines the locale to use when the scurrent one
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
@@ -156,7 +156,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -207,6 +207,7 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
+        'Pusher' => Pusher\Pusher::class,
         'View' => Illuminate\Support\Facades\View::class,
 
     ],

@@ -70,13 +70,11 @@ export default {
       id: Number,
       user: Number
     },
-    //['id'],
     components: { draggable },
     data() {
         return {
             task_name: '',
             task_assign: 0,
-            // show_title_form: false,
             show_add: false,
             name: '',
             tasks: [],
@@ -86,7 +84,23 @@ export default {
     },
     created() {
         this.fetch();
-        // this.getUser();
+    },
+    ready() {
+       Echo.channel('task-channel')
+           .listen('TaskEdited', (data) => {
+              console.log(data);
+              //  this.tasks.push({
+              //      message: data.chatMessage.message,
+              //      username: data.user.name
+              //  });
+              this.tasks.push({
+                id: response.data.data.id,
+                name: data.name,
+                board_id: data.board_id,
+                lane_id: data.lane_id,
+                user_id: data.user_id
+              });
+           });
     },
     methods: {
         fetch() {
@@ -101,13 +115,6 @@ export default {
                    this.users  = response.data;
                 });
         },
-        // getUser() {
-        //   axios.get("/users")
-        //        .then((response) => {
-        //          console.log(response);
-        //           this.users  = response.data.data.users;
-        //        });
-        // },
         addTask() {
             const data = {
                 'lane_id': this.id,
@@ -121,7 +128,7 @@ export default {
                 if (this.tasks.length > 0) {
                     let last_id = this.tasks[this.tasks.length-1].id + 1;
                 }
-                this.tasks.push({id: response.data.data.id, name: data.name});
+                this.tasks.push({id: response.data.data.id, name: data.name, board_id: data.board_id, lane_id: data.lane_id, user_id: data.user_id});
             });
             this.new_item = '';
         },
@@ -160,16 +167,9 @@ export default {
                   //
                });
         }
-        // toggleTitleForm() {
-        //     this.show_title_form = !this.show_title_form;
-        //     // Use nextTick because the element might not be in the DOM yet
-        //     this.$nextTick(() => {
-        //         if (this.$refs.titlefield) {
-        //             this.$refs.titlefield.focus();
-        //             this.$refs.titlefield.select();
-        //         }
-        //     })
-        // }
     }
 }
+
+</script>
+
 </script>

@@ -67,6 +67,18 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('3b9b6517ff470cb247b1', {
+      cluster: 'us2',
+      encrypted: false
+    });
+
+    var channel = pusher.subscribe('task-chanel');
+    channel.bind('App\\Events\\TaskEdited', function(data) {
+      alert(data.message);
+    });</script>
     <!-- <script type="text/javascript" src="/resources/assets/js/app.js"> </script> -->
 
 </body>

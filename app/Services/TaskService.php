@@ -22,12 +22,8 @@ class TaskService
     return $task;
   }
 
-  public function updateLane(Task $task, $id)
+  public function updateLane(Task $task)
   {
-    // $task->name = request('name');
-    // $task->description = " desc ";
-    // $task->assigned_to = request('assigned_to');
-    // $task->updated_at = Carbon::now();
     $task->save();
     return $task;
   }

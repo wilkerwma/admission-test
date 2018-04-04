@@ -11,6 +11,8 @@
 |
 */
 
+use App\Events\TaskEvent;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -26,4 +28,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/board', 'BoardController');
 Route::put('/task/changeLane/', 'TaskController@changeLane');
 Route::resource('/task', 'TaskController');
+Route::get('/users2', function(){
+  event(new TaskEvent('Hey'));
+})->middleware('auth');
+;
 Route::resource('/lane', 'LaneController');

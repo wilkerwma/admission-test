@@ -26,3 +26,15 @@ Vue.use(VuejsDialog)
 const app = new Vue({
     el: '#app'
 });
+
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('3b9b6517ff470cb247b1', {
+  cluster: 'us2',
+  encrypted: false
+});
+
+var channel = pusher.subscribe('task-chanel');
+channel.bind('App\\Events\\TaskEdited', function(data) {
+  alert(data.message);
+});
